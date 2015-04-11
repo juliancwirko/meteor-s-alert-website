@@ -6,24 +6,29 @@ var goTopFunc = function () {
     }, 800);
 };
 
-Template.backBtn.rendered = function () {
+Template.backBtn.onRendered(function () {
     var $backToTopButton = this.$('.js-back-to-top-btn');
     if ($backToTopButton.length) {
-        $(window).scroll(function () {
+        $(window).on('scroll.backBtn', function () {
             if ($(this).scrollTop() > 700) {
                 $backToTopButton.removeClass('hidden');
             } else {
                 $backToTopButton.addClass('hidden');
             }
         });
-        $backToTopButton.on('click', goTopFunc);
+        $backToTopButton.on('click.backBtn', goTopFunc);
     }
-};
+});
 
-Template.stickyHeder.rendered = function () {
+Template.backBtn.onDestroyed(function () {
+    $(window).off('scroll.backBtn');
+    this.$('.js-back-to-top-btn').off('click.backBtn');
+});
+
+Template.stickyHeder.onRendered(function () {
     var $stickyHeader = this.$('.js-sticky-header');
     if ($stickyHeader.length) {
-        $(window).scroll(function () {
+        $(window).on('scroll.stickyHeader', function () {
             if ($(this).scrollTop() > 500) {
                 $stickyHeader.addClass('active');
             } else {
@@ -31,7 +36,11 @@ Template.stickyHeder.rendered = function () {
             }
         });
     }
-};
+});
+
+Template.stickyHeder.onDestroyed(function () {
+    $(window).off('scroll.stickyHeader');
+});
 
 Template.stickyHeder.events({
     'click .js-go-to-paragraph': function (e) {
@@ -56,6 +65,7 @@ Template.main.events({
     }
 });
 
+// get content from private/docs.md file
 Template.docs.onCreated(function () {
     var self = this;
     self.mdDocsContent = new ReactiveVar('');
