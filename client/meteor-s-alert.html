@@ -1,0 +1,67 @@
+<head>
+    <title>Simple and fancy notifications / alerts for Meteor</title>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,200,300,500,700,600,800,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    {{> stickyHeder}}
+    {{> main}}
+    {{> backBtn}}
+</body>
+
+<template name="stickyHeder">
+    <div class="sticky-header js-sticky-header">
+        <div class="smenu">
+            <span><a href="#" class="js-go-top">sAlert</a></span>
+            <small class="right">
+                <a class="js-go-to-paragraph" href="#installation">Installation</a>
+                <a class="js-go-to-paragraph" href="#demo">Demo</a>
+                <a class="js-go-to-paragraph" href="#usage">Usage</a>
+                <a class="js-go-to-paragraph" href="#cssstyling">CSS Styling</a>
+                <a class="js-go-to-paragraph" href="#templateoverwriting">Template overwriting</a>
+                <a class="js-go-to-paragraph" href="#customfields">Custom fields</a>
+            </small>
+        </div>
+    </div>
+</template>
+
+<template name="backBtn">
+    <div class="back-to-top-btn js-back-to-top-btn hidden">
+        <i class="fa fa-angle-up"></i>
+    </div>
+</template>
+
+<template name="main">
+    <header>
+        <div class="logo">
+            <h1>sAlert</h1>
+        </div>
+        <div class="menu">
+            <a href="http://julian.io"><i class="fa fa-fw fa-home"></i></a>
+            <a href="https://twitter.com/JulianCwirko"><i class="fa fa-fw fa-twitter"></i></a>
+            <a href="https://github.com/juliancwirko"><i class="fa fa-fw fa-github"></i></a>
+        </div>
+    </header>
+    <section class="jumbo">
+        <h2>Alerts for Meteor.js</h2>
+        <span>with custom fields</span>
+        <small>..and animations</small>
+        <div class="buttons">
+            <a href="#" class="btn btn-jumbo js-go-to-install"><i class="fa fa-power-off"></i> Install</a>
+            <a href="http://s-alert-demo.meteor.com" class="btn btn-jumbo js-go-to-install"><i class="fa fa-rocket"></i> Demo</a>
+            <a href="https://github.com/juliancwirko/meteor-s-alert" class="btn btn-jumbo"><i class="fa fa-github"></i> GitHub</a>
+        </div>
+    </section>
+    <main>
+        {{> docs}}
+    </main>
+</template>
+
+<template name="docs">
+    <section class="docs">
+
+        {{{mdDocs}}}
+
+    </section>
+</template>
