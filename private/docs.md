@@ -1,8 +1,25 @@
 ## Installation
 
-Add package:
+**Note: From version 2.0.0 you should also choose and add effect package.**
+This is more elastic and optimal solution (effects css file contained all effects styles and it was heavy). It will work without effects too. You can add as many effect packages as you want. Config and usage is the same.
+
+<p>&nbsp;</p>
+
+**Add package:**
 
     meteor add juliancwirko:s-alert
+
+<p>&nbsp;</p>
+
+**Or/And add it with one of effects:**
+
+    meteor add juliancwirko:s-alert-scale
+    meteor add juliancwirko:s-alert-slide
+    meteor add juliancwirko:s-alert-genie
+    meteor add juliancwirko:s-alert-jelly
+    meteor add juliancwirko:s-alert-flip
+    meteor add juliancwirko:s-alert-bouncyflip
+    meteor add juliancwirko:s-alert-stackslide
 
 ## Demo
 
@@ -71,13 +88,13 @@ This one particular error will be displayed in different way.
 
 ### Avaible effects:
 
-- scale
-- slide
-- genie
-- jelly
-- flip
-- bouncyflip
-- stackslide (right-top and left-top positions are the same here similar right-botton and left-bottom)
+- **scale** ( <small>`meteor add juliancwirko:s-alert-scale`</small> )
+- **slide** ( <small>`meteor add juliancwirko:s-alert-slide`</small> )
+- **genie** ( <small>`meteor add juliancwirko:s-alert-genie`</small> )
+- **jelly** ( <small>`meteor add juliancwirko:s-alert-jelly`</small> )
+- **flip** ( <small>`meteor add juliancwirko:s-alert-flip`</small> )
+- **bouncyflip** ( <small>`meteor add juliancwirko:s-alert-bouncyflip`</small> )
+- **stackslide** ( <small>`meteor add juliancwirko:s-alert-stackslide`</small> ) (right-top and left-top positions are the same here similar right-botton and left-bottom)
 
 ### Avaible positions:
 
@@ -108,6 +125,28 @@ For example if you want to overwrite .s-alert-red in scale effect
 }
 ```
 
+## Your own effects packages
+
+You can prepare your own effect package. As a reference take one of the ready to use packages. You will find the code on GitHub. You can create your own animations, but remember to use `.s-alert-effect-{your-effect-name-here}` prefix. Then you can use it like:
+
+```
+sAlert.error('Boom! Something went wrong!', {effect: 'your-effect-name-here', position: 'right-bottom', timeout: 'no'});
+```
+
+Or you can place it in the config:
+
+```
+Meteor.startup(function () {
+
+    sAlert.config({
+        effect: 'your-effect-name-here',
+        position: 'right-top',
+        timeout: 5000
+    });
+
+});
+```
+If you want to have your effect package linked here just let me know.
 
 ## Template overwriting
 

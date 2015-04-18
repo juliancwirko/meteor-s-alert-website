@@ -3,7 +3,7 @@
 
 @import 's-grid-settings'
 @import 's-grid-functions'
-@import 's-grid'
+@import 's-grid-classes'
 
 html, body, p, h1, h2, h3, h4, h5, h6
     font-family 'Raleway' sans-serif
@@ -39,14 +39,14 @@ header
     .logo, .menu
         margin: 0;
     .logo
-        cols(columns / 2, columns, 0);
+        cell(columns / 2, columns, g: 0);
         font-weight 800
         color #fff
         h1
             margin 0
             font-size rem-calc(22px)
     .menu
-        cols(columns / 2, columns, 0);
+        cell(columns / 2, columns, g: 0);
         color #fff
         font-size rem-calc(22px)
         text-align right
@@ -170,12 +170,12 @@ main
     section
         grid()
         aside, main
-            cols(columns, columns, gutter)
+            cell(columns, columns, g: gutter)
         @media screen and (min-width: rem-calc(breakpoints[md]))
             aside
-                cols(columns / 3, columns, gutter)
+                cell(columns / 3, columns, g: gutter)
             main
-                cols((columns / 3) * 2, columns, gutter)
+                cell((columns / 3) * 2, columns, g: gutter)
 
 .btn
     font-family inherit
