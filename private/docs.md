@@ -41,7 +41,7 @@ You can set up your sAlert (client side). (More about possible configuration opt
 
         sAlert.config({
             effect: 'scale',
-            position: 'right-top',
+            position: 'top-right',
             timeout: 5000
         });
 
@@ -82,7 +82,7 @@ This is an object with all settings which you want to overwrite. So if you have 
 
 **For example:**
 
-    sAlert.error('Boom! Something went wrong!', {effect: 'genie', position: 'right-bottom', timeout: 'no'});
+    sAlert.error('Boom! Something went wrong!', {effect: 'genie', position: 'bottom-right', timeout: 'none'});
 
 This one particular error will be displayed in different way.
 
@@ -98,28 +98,30 @@ This one particular error will be displayed in different way.
 
 ### Avaible positions:
 
-- left-top
-- left-bottom
-- right-top
-- right-bottom
+- top-left
+- bottom-left
+- top-right
+- bottom-right
+- top (full width)
+- bottom (full width)
 
 ### Timeout:
 
-You can set up it in miliseconds or place 'no'.
+You can set up it in miliseconds or place `none` string.
 
 ## CSS styling
 
-You can overwrite all css classes. Major classes which are defined by conditions are:
+You can overwrite all css classes. Major classes which are:
 
-- .s-alert-blue
-- .s-alert-green
-- .s-alert-yellow
-- .s-alert-red`
+- .s-alert-info
+- .s-alert-success
+- .s-alert-warning
+- .s-alert-error
 
 For example if you want to overwrite .s-alert-red in scale effect
 
 ```css
-.s-alert-effect-scale.s-alert-red {
+.s-alert-error.s-alert-effect-scale {
     background: #bada55; //your background color here
     color: #fff //your text color here
 }
@@ -130,7 +132,7 @@ For example if you want to overwrite .s-alert-red in scale effect
 You can prepare your own effect package. As a reference take one of the ready to use packages. You will find the code on GitHub. You can create your own animations, but remember to use `.s-alert-effect-{your-effect-name-here}` prefix. Then you can use it like:
 
 ```
-sAlert.error('Boom! Something went wrong!', {effect: 'your-effect-name-here', position: 'right-bottom', timeout: 'no'});
+sAlert.error('Boom! Something went wrong!', {effect: 'your-effect-name-here', position: 'bottom-right', timeout: 'none'});
 ```
 
 Or you can place it in the config:
@@ -140,7 +142,7 @@ Meteor.startup(function () {
 
     sAlert.config({
         effect: 'your-effect-name-here',
-        position: 'right-top',
+        position: 'top-right',
         timeout: 5000
     });
 
@@ -152,7 +154,7 @@ If you want to have your effect package linked here just let me know.
 
 Here is a default template (it will be included when you use standard ````{{> sAlert}}````):
 
-    <div class="s-alert-box s-alert-effect-{{effect}} s-alert-{{condition}} s-alert-{{position}} s-alert-show" id="{{_id}}">
+    <div class="s-alert-box s-alert-{{condition}} s-alert-{{position}} s-alert-effect-{{effect}} s-alert-show" id="{{_id}}">
         <div class="s-alert-box-inner">
             <p>{{message}}</p>
         </div>
@@ -163,7 +165,7 @@ If you want to owerwrite it you should remember to be careful with all used help
 **Here you have an example of overwriting an alert content template** (Place it somewhere in your html files, you can name it as you want):
 
     <template name="sAlertCustom">
-        <div class="my-custom-alert-class s-alert-box s-alert-effect-{{effect}} s-alert-{{condition}} s-alert-{{position}} s-alert-show" id="{{_id}}">
+        <div class="custom-alert-class s-alert-box s-alert-{{condition}} s-alert-{{position}} s-alert-effect-{{effect}} s-alert-show" id="{{_id}}">
             <div class="s-alert-box-inner">
                 <div class="alert-header">
                     <h1>{{sAlertTitle}}</h1>
@@ -208,6 +210,17 @@ If you notice any bugs related with this please drop me a note. Thanks.
 ### License
 
 MIT
+
+### Changelog
+
+#### v2.1.0
+- Postitions names changed; example: 'right-bottom' is now 'bottom-right' etc. (old names should work too. It will be removed in v3.0.0)
+- css classes names changed; example: '.s-alert-blue' is now '.s-alert-info' etc. coresponding to sAlert.info(...) etc.
+- 2 new positions: 'top', 'bottom' (full width alerts for all kind of effects.)
+- timeout 'no' is now 'none' ('no' will work to - will be removed in v3.0.0)
+
+#### v2.0.0
+- divide effects into separate packages
 
 ### Download and use this website for your documentation
 
