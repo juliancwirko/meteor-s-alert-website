@@ -39,7 +39,9 @@ Meteor.startup(function () {
         position: 'top-right',
         timeout: 5000,
         html: false,
-        onRouteClose: true
+        onRouteClose: true,
+        stack: true,
+        offset: 0
     });
 
 });
@@ -84,7 +86,7 @@ sAlert.close(warningThatWeWantToCloseLater);
 And what is `configOverwrite`? This is an object with all the settings you want to override, on a per-alert basis. For example:
 
 ```js
-sAlert.error('Boom! Something went wrong!', {effect: 'genie', position: 'bottom-right', timeout: 'none', onRouteClose: false});
+sAlert.error('Boom! Something went wrong!', {effect: 'genie', position: 'bottom-right', timeout: 'none', onRouteClose: false, stack: false, offset: '100px'});
 ```
 
 This particular error will be displayed in different way.
@@ -120,6 +122,35 @@ If you want you can use HTML in your message.
 sAlert.error('Boom! <br> Something went wrong!', {effect: 'your-effect-name-here', html: true});
 ```
 
+You can also put it in the main sAlert config.
+
+#### Closing alerts on route change
+
+If you go to another route, in default the alerts should automatically be cleaned up. This works with Iron Router and FlowRouter. However if you want the alerts to persists on route change you should change `onRouteClose` param in your config (example above).
+
+You can even overwrite it in sAlert methods calls. So you can close only some of the alerts on route change. Example:
+
+```javascript
+sAlert.warning('Opssss!!! No good! Keep me even when the route changes.', {onRouteClose: false, timeout: 10000});
+sAlert.info('Be careful and hide me when the route changes.', {onRouteClose: true, timeout: 10000});
+```
+
+#### Stacking alerts
+
+By default your multiple alerts on the screen will appear one after another with shift on top or bottom.
+You can disable it by `stack` param. Just set it to `false`.
+```javascript
+sAlert.info('Opssss!!! I am full width alert without stacking enabled', {position: 'top'; stack: false});
+```
+You can also put it in the main sAlert config.
+
+#### Alerts offset
+
+If you want you can set up offset for your alerts. This is useful when you have for example some header and you want your alerts to appear below it. You can set this param in pixels. Default is '0';
+
+```javascript
+sAlert.info('Opssss!!! I am displayed below the header which is 70px height', {position: 'top'; offset: '100px'});
+```
 You can also put it in the main sAlert config.
 
 ### CSS styling
@@ -209,17 +240,6 @@ sAlert.info({sAlertIcon: 'asterisk', sAlertTitle: 'My custom sAlert field - the 
 
 You can pass as many fields as you like. Remember to add the corresponding helpers in the template. `configOverwrite` works here the same as described above. It is of course optional.
 
-#### Using with routers:
-
-If you go to another route, in default the alerts should automatically be cleaned up. This works with Iron Router and FlowRouter. However if you want the alerts to persists on route change you should change `onRouteClose` param in your config (example above).
-
-You can even overwrite it in sAlert methods calls. So you can close only some of the alerts on route change. Example:
-
-```javascript
-sAlert.warning('Opssss!!! No good! Keep me even when the route changes.', {onRouteClose: false, timeout: 10000});
-sAlert.info('Be careful and hide me when the route changes.', {onRouteClose: true, timeout: 10000});
-```
-
 - - -
 
 #### Inspiration:
@@ -229,6 +249,10 @@ sAlert.info('Be careful and hide me when the route changes.', {onRouteClose: tru
 Thanks a lot for those who report bugs and request changes (especially [@dandv](https://github.com/dandv)). sAlert keeps getting better.
 
 #### Changelog
+
+#### v2.4.0
+- `stack` param - enable/disable stacking feature
+- `offset` param - top or bottom offset of the first alert on screen. In pixels. Default '0'
 
 #### v2.3.5
 - `onRouteClose` param - you can decide whether you want to close your alerts (or particular ones) when your route changes (default true)
@@ -242,23 +266,23 @@ Thanks a lot for those who report bugs and request changes (especially [@dandv](
 #### v2.3.1
 - Iron Router clear fix
 
-##### v2.3.0
+#### v2.3.0
 - displaying more than one alert ([#7](https://github.com/juliancwirko/meteor-s-alert/issues/7))
 
-##### v2.2.0
+#### v2.2.0
 - now you can use HTML in your messages (thanks to [@gibex](https://github.com/gibex))
 
-##### v2.1.1
+#### v2.1.1
 - console info fix ([#12](https://github.com/juliancwirko/meteor-s-alert/issues/12))
 - sAlert init functions now returns alert id ([#15](https://github.com/juliancwirko/meteor-s-alert/issues/15))
 
-##### v2.1.0
+#### v2.1.0
 - Postition names changed; example: 'right-bottom' is now 'bottom-right' etc. (The old names will work too, for backwards compatibility, but will be removed in v3.0.0.)
 - CSS class names changed; example: '.s-alert-blue' is now '.s-alert-info', coresponding to sAlert.info(...) etc.
 - two new positions: 'top' and 'bottom', for full-width alerts; they work for all effects
 - timeout 'no' is now 'none' ('no' is deprecated and will work but will be removed in v3.0.0)
 
-##### v2.0.0
+#### v2.0.0
 - factor out effects into separate packages
 
 ### License
