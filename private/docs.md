@@ -1,8 +1,5 @@
 ## Installation
 
-**Note: Starting with version 2.0.0 you should also choose and add and effect package.**
-This is a more flexible and lean solution (previously, the effects CSS file contained all effect styles and it was heavy). sAlert will work without effects as well. You can add as many effect packages as you want. Config and usage are the same.
-
 ### Usage
 
 Add package:
@@ -41,7 +38,16 @@ Meteor.startup(function () {
         html: false,
         onRouteClose: true,
         stack: true,
-        offset: 0
+        offset: 0,
+        beep: false
+        // examples:
+        // beep: '/beep.mp3'  // or you can pass an object:
+        // beep: {
+        //     info: '/beep-info.mp3',
+        //     error: '/beep-error.mp3',
+        //     success: '/beep-success.mp3',
+        //     warning: '/beep-warning.mp3'
+        // }
     });
 
 });
@@ -153,6 +159,14 @@ sAlert.info('Opssss!!! I am displayed below the header which is 70px height', {p
 ```
 You can also put it in the main sAlert config.
 
+#### Audio alerts
+
+You can set up your audio 'beeps'. Just configure your audio file path (.mp3 is prefered because it should work in every browser). You can also configure 4 paths for 4 conditions. The best way is to put your audio files in `public` folder. Check the configuration above for more details.
+<p>&nbsp;</p>
+**There is no default audio sample in the package.**
+
+You should use sound samples which you know that you have the right to use it.
+
 ### CSS styling
 
 You can override all CSS classes by targeting `s-alert-{{alertType}}.s-alert-effect-{{effectType}}`. The alert type classes are:
@@ -248,7 +262,16 @@ You can pass as many fields as you like. Remember to add the corresponding helpe
 
 Thanks a lot for those who report bugs and request changes (especially [@dandv](https://github.com/dandv)). sAlert keeps getting better.
 
+**Note: Starting with version 3.0.0 old deprecated APIs are removed**
+
+**Note: Starting with version 2.0.0 you should also choose and add and effect package.**
+This is a more flexible and lean solution (previously, the effects CSS file contained all effect styles and it was heavy). sAlert will work without effects as well. You can add as many effect packages as you want. Config and usage are the same.
+
 #### Changelog
+
+#### v3.0.0
+- old API cleanup
+- Audio alerts
 
 #### v2.4.2
 - Error object parse fix [#29](https://github.com/juliancwirko/meteor-s-alert/issues/29)
