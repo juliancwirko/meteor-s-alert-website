@@ -276,6 +276,11 @@ sAlert.info({sAlertIcon: 'asterisk', sAlertTitle: 'My custom sAlert field - the 
 
 You can pass as many fields as you like. Remember to add the corresponding helpers in the template. `configOverwrite` works here the same as described above. It is of course optional.
 
+#### Aditional links
+
+- [s-Alert on the Meteor Podcast](http://www.meteorpodcast.com/e/episode-60-the-club-edition/)
+- [How to use it with React](http://julian.io/how-to-use-the-meteor-salert-package-with-react/)
+
 - - -
 
 #### Inspiration:
