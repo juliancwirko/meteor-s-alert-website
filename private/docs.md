@@ -296,6 +296,12 @@ This is a more flexible and lean solution (previously, the effects CSS file cont
 
 #### Changelog
 
+#### v3.1.2
+- separation of positions logic - there was a problems when you wanted use many alerts positions at the same time [#35](https://github.com/juliancwirko/meteor-s-alert/issues/35)
+
+#### v3.1.1
+- stack up limit improvements [#31](https://github.com/juliancwirko/meteor-s-alert/issues/31)
+
 #### v3.1.0
 - clear audio on close by hand [#25](https://github.com/juliancwirko/meteor-s-alert/issues/25)
 - stack up spacing & limit [#31](https://github.com/juliancwirko/meteor-s-alert/issues/31)
