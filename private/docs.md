@@ -44,7 +44,7 @@ Meteor.startup(function () {
         //     limit: 3 // when fourth alert appears all previous ones are cleared
         // }
         offset: 0, // in px - will be added to first alert (bottom or top - depends of the position in config)
-        beep: false
+        beep: false,
         // examples:
         // beep: '/beep.mp3'  // or you can pass an object:
         // beep: {
@@ -52,6 +52,11 @@ Meteor.startup(function () {
         //     error: '/beep-error.mp3',
         //     success: '/beep-success.mp3',
         //     warning: '/beep-warning.mp3'
+        // }
+        onClose: _.noop //
+        // examples:
+        // onClose: function() {
+        //     /* Code here will be executed once the alert closes. */
         // }
     });
 
@@ -124,6 +129,36 @@ This particular error will be displayed in different way.
 #### Timeout:
 
 You can set up it in miliseconds or use the string `none`.
+
+
+#### Callback onClose:
+
+You can hook a callback to be invoked when the alert closes. This callback will be invoked when the default timeout closes the alert.
+
+```js
+sAlert.success('Your message', {onClose: function() {console.log('closing alert...');}});
+```
+
+If `timeout` is set specifically, it respects the setting.
+
+```js
+sAlert.success('Your message', {timeout: 1000, onClose: function() {console.log('closing alert in 1000ms...');}});
+```
+
+The callback will also be invoked if you specifically close the alert.
+
+```js
+var sAlertId = sAlert.success('Your message', {onClose: function() {console.log('closing alert...');}});
+sAlert.close(sAlertId);
+```
+
+It applies for `closeAll` as well.
+
+```js
+sAlert.success('Your message one', {onClose: function() {console.log('closing alert one...');}});
+sAlert.success('Your message two', {onClose: function() {console.log('closing alert two...');}});
+sAlert.closeAll();
+```
 
 #### HTML tags
 
@@ -295,6 +330,9 @@ Thanks a lot for those who report bugs and request changes (especially [@dandv](
 This is a more flexible and lean solution (previously, the effects CSS file contained all effect styles and it was heavy). sAlert will work without effects as well. You can add as many effect packages as you want. Config and usage are the same.
 
 #### Changelog
+
+#### v3.1.3
+- onClose callback added [[#44](https://github.com/juliancwirko/meteor-s-alert/pull/44)]. Many thanks to [@szchenghuang](https://github.com/szchenghuang)
 
 #### v3.1.2
 - separation of positions logic - there was a problems when you wanted use many alerts positions at the same time [#35](https://github.com/juliancwirko/meteor-s-alert/issues/35)
