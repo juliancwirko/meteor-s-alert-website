@@ -1,5 +1,7 @@
 ## Installation
 
+(There is also a pure React component. You can use it without Blaze in your Meteor projects. You can also use it in other apps with React. Check it out: [react-s-alert](https://github.com/juliancwirko/react-s-alert))
+
 ### Usage
 
 Add package:
