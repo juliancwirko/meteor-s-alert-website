@@ -407,6 +407,7 @@ $ meteor
 
 ### Check out other tools for Meteor:
 
+* [SimpleChat.Support - Open Source Live Chat built with Meteor](https://www.simplechat.support)
 * [Prettify and export your raw git diff output](https://atmospherejs.com/juliancwirko/pretty-diff)
 * [Foundation 5 with Scss for Meteor](https://atmospherejs.com/juliancwirko/zf5)
 * [Stylus, Flexbox grid system](https://atmospherejs.com/juliancwirko/s-grid)
